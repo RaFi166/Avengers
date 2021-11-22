@@ -3,3 +3,6 @@
   margin: 0;
   font-family: "Quicksand"
 }
+.my-nav li{
+  padding-left: 10px;
+}

@@ -1,11 +1,13 @@
 import { Route, Switch, BrowserRouter } from "react-router-dom";
 import About from "./Components/About/About";
 import AddAvengers from "./Components/AddAvengers/AddAvengers";
+import Footer from "./Components/Footer/Footer";
 import Home from "./Components/Home/Home";
 import Login from "./Components/Login/Login";
 import Navbar from "./Components/Navbar/Navbar";
 import NotFound from "./Components/NotFound/NotFound";
-import SingleBlogDetails from "./Components/SingleBlogDetails/SingleBlogDetails";
+import SingleAvengerDetails from "./Components/SingleAvengerDetails/SingleAvengerDetails";
+
 
 function App() {
   return (
@@ -23,7 +25,7 @@ function App() {
             <About></About>
           </Route>
           <Route exact path="/blog/:id">
-            <SingleBlogDetails></SingleBlogDetails>
+            <SingleAvengerDetails></SingleAvengerDetails>
           </Route>
           <Route path="/create-avengers">
             <AddAvengers></AddAvengers>
@@ -35,6 +37,7 @@ function App() {
             <NotFound></NotFound>
           </Route>
         </Switch>
+        <Footer></Footer>
       </BrowserRouter>
 
     </div>

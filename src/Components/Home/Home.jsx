@@ -1,10 +1,10 @@
 import React from 'react';
-import Blogs from '../Blogs/Blogs';
+import Avengers from '../Avengers/Avengers';
 
 const Home = () => {
     return (
-        <div className="">
-            <Blogs></Blogs>
+        <div className="w-2/3 mx-auto mt-14">
+            <Avengers></Avengers>
         </div>
     )
 }
