@@ -6,6 +6,7 @@ import Home from "./Components/Home/Home";
 import Login from "./Components/Login/Login";
 import Navbar from "./Components/Navbar/Navbar";
 import NotFound from "./Components/NotFound/NotFound";
+import Register from "./Components/Register/Register";
 import SingleAvengerDetails from "./Components/SingleAvengerDetails/SingleAvengerDetails";
 
 
@@ -32,6 +33,9 @@ function App() {
           </Route>
           <Route path="/login-signup">
             <Login></Login>
+          </Route>
+          <Route path="/register">
+            <Register></Register>
           </Route>
           <Route path="*">
             <NotFound></NotFound>
