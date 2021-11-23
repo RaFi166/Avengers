@@ -3,15 +3,17 @@ import { Link } from 'react-router-dom';
 import useFirebaseHooks from '../useFirebaseHooks/useFirebaseHook'
 
 const Login = () => {
-    const { googleSignIn, logout, user } = useFirebaseHooks();
+    const { googleSignIn, logout, user, getEmail, getPassword, loginUser, error} = useFirebaseHooks();
     return (
         <div>
             <div className="shadow-inner shadow-xl mb-32 rounded-2xl bg-green-400 bg-opacity-80 text-center mt-20 p-10 w-2/5 mx-auto">
                 <div>
+                    <h1>{user}</h1>
+                    <p className="text-red-bg-green-500">{error}</p>
                     <form>
-                        <input className="mb-5 rounded w-80" placeholder="Enter Email" required type="text" name="" id="" /> <br />
-                        <input className="w-80 rounded" placeholder="Enter Password" required type="password" /> <br />
-                        <button className="pl-2 pr-2 p-1 bg-green-800 rounded mt-5 font-semibold text-white">Login</button>
+                        <input onBlur={getEmail} className="mb-5 rounded w-80" placeholder="Enter Email" required type="text" name="" id="" /> <br />
+                        <input onBlur={getPassword} className="w-80 rounded" placeholder="Enter Password" required type="password" /> <br />
+                        <button onClick={loginUser} className="pl-2 pr-2 p-1 bg-green-800 rounded mt-5 font-semibold text-white">Login</button>
                     </form>
                     <button onClick={googleSignIn} className="p-1 bg-green-800 text-white font-bold rounded-2xl mt-2">Sign in Using Goggle</button>
                     <Link to="/register">
