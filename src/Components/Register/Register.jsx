@@ -12,9 +12,6 @@ const Register = () => {
                         <input onBlur = {getPassword}className="w-80 rounded" placeholder="Enter Password" required type="password" /> <br />
                         <button className="pl-2 pr-2 p-1 bg-green-800 rounded mt-5 font-semibold text-white">Register</button>
                     </form>
-                    <button  className="p-1 bg-green-800 text-white font-bold rounded-2xl mt-2">Sign in Using Goggle</button>
-                    
-                  <button className="p-2 bg-indigo-400">Logout</button>
                 </div>
             </div>
         </div>

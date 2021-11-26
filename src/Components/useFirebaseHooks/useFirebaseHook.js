@@ -1,14 +1,14 @@
 import initAuthentication from "../Firebase/initializeApp";
 
-import { getAuth, signOut, signInWithPopup, GoogleAuthProvider, createUserWithEmailAndPassword, sendEmailVerification, signInWithEmailAndPassword } from "firebase/auth";
-import { useState } from "react";
+import { getAuth, signOut, signInWithPopup, GoogleAuthProvider, createUserWithEmailAndPassword, sendEmailVerification, signInWithEmailAndPassword, onAuthStateChanged,sendPasswordResetEmail  } from "firebase/auth";
+import { useEffect, useState } from "react";
 import { useHistory } from "react-router";
 
 initAuthentication();
 
 const useFirebaseHooks = () => {
     const history = useHistory();
-    const [user, setUser] = useState();
+    const [user, setUser] = useState({});
     const [error, setError] = useState('');
     const [email, setEmail] = useState();
     const [password, setPassword] = useState();
@@ -34,8 +34,8 @@ const useFirebaseHooks = () => {
                     .then((result) => {
                         alert("Check Email & Verify that it's your account")
                     })
-    })
-}
+            })
+    }
 
 
     //signin with email password
@@ -46,49 +46,78 @@ const useFirebaseHooks = () => {
             .then((userCredential) => {
                 // Signed in 
                 const user = userCredential.user;
-                alert("Login successfull");
+                alert("Login successfull", user.displayName);
                 history.push("/");
             })
             .catch((error) => {
                 const errorMessage = error.message;
                 setError(errorMessage);
-        })
+            })
     }
 
     // signin using google
     const googleprovider = new GoogleAuthProvider();
-    
-        const googleSignIn = () => {
-            const auth = getAuth();
-            signInWithPopup(auth, googleprovider)
-                .then((result) => {
-                    const user = result.user;
-                    console.log(user);
-                    setUser(user);
-                })
-        }
 
-        //logout
-        const logout = () => {
-            const auth = getAuth();
-            signOut(auth).then(() => {
-                setUser({})
+    const googleSignIn = () => {
+        const auth = getAuth();
+        signInWithPopup(auth, googleprovider)
+            .then((result) => {
+                const user = result.user;
+                console.log(user);
+                setUser(user);
+                history.push("/");
+                alert("Login successfull", user.displayName);
+
             })
-        }
+    }
 
-        return {
-            googleSignIn,
-            user,
-            logout,
-            email,
-            password,
-            getEmail,
-            getPassword,
-            regSubmission,
-            loginUser,
-            error
-        }
+    // currently signed-in user
+    useEffect(() => {
+        const auth = getAuth();
+        onAuthStateChanged(auth, (user) => {
+            setUser(user);
+        })
+    }
+
+        , [])
+
+
+    //logout
+    const logout = () => {
+        const auth = getAuth();
+        signOut(auth).then(() => {
+            setUser({});
+            alert("Logged out Successfully");
+        })
+    }
+    //forgotPassword
+    const forgotPassword = () => {
+        const auth = getAuth();
+        sendPasswordResetEmail(auth, email)
+            .then(() => {
+                alert("Password Reset Email Sent")
+            })
+            .catch((error) => {
+                const errorMessage = error.message;
+                setError(errorMessage);
+                
+              });
+    }
+
+    return {
+        googleSignIn,
+        user,
+        logout,
+        email,
+        password,
+        getEmail,
+        getPassword,
+        regSubmission,
+        loginUser,
+        error,
+        forgotPassword
+    }
 
 }
-    export default useFirebaseHooks;
+export default useFirebaseHooks;
 

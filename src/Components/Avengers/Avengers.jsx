@@ -17,7 +17,7 @@ const Avengers = () => {
     const searchChanged = (e) => {
         const getsearchValue = e.target.value;
         const matchedValue = avengerdata.filter(filterData =>
-            filterData.name.toLowerCase().includes(getsearchValue.toLowerCase())
+            filterData.name.includes(getsearchValue)
         )
         setfilteredData(matchedValue);
         console.log(matchedValue.length);
