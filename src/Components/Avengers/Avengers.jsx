@@ -14,10 +14,11 @@ const Avengers = () => {
             })
     }, []);
 
-    const searchChanged = (e) => {
+    const onChangeData = (e) => {
         const getsearchValue = e.target.value;
+        console.log(getsearchValue);
         const matchedValue = avengerdata.filter(filterData =>
-            filterData.name.includes(getsearchValue)
+            filterData.title.toLowerCase().includes(getsearchValue.toLowerCase())
         )
         setfilteredData(matchedValue);
         console.log(matchedValue.length);
@@ -25,10 +26,10 @@ const Avengers = () => {
 
     return (
         <>
-            <div>
-                <input type="text" onChange={searchChanged} placeholder="Search Avengers" className="w-1/2 border-solid border-4 border-light-blue-500 " />
-            </div>
-            <div className="">
+        <div className="mx-auto">
+            <input placeholder="Search Avengers Here" onChange={onChangeData} type="text" className=" pl-2 w-1/2 border border-1 border-green-400" />
+        </div>
+            <div className="mt-4">
                 {
                     filteredData.map(allData =>
                         <div className=" mb-10 shadow grid grid-cols-2" key={allData.id}>

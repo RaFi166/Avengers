@@ -1,6 +1,7 @@
 import initAuthentication from "../Firebase/initializeApp";
 
-import { getAuth, signOut, signInWithPopup, GoogleAuthProvider, createUserWithEmailAndPassword, sendEmailVerification, signInWithEmailAndPassword, onAuthStateChanged,sendPasswordResetEmail  } from "firebase/auth";
+import { getAuth, signOut, signInWithPopup, GoogleAuthProvider, createUserWithEmailAndPassword, sendEmailVerification, signInWithEmailAndPassword, onAuthStateChanged, sendPasswordResetEmail } from "firebase/auth";
+
 import { useEffect, useState } from "react";
 import { useHistory } from "react-router";
 
@@ -12,7 +13,6 @@ const useFirebaseHooks = () => {
     const [error, setError] = useState('');
     const [email, setEmail] = useState();
     const [password, setPassword] = useState();
-
 
     //register
     const getEmail = (e) => {
@@ -36,7 +36,6 @@ const useFirebaseHooks = () => {
                     })
             })
     }
-
 
     //signin with email password
     const loginUser = (e) => {
@@ -67,7 +66,6 @@ const useFirebaseHooks = () => {
                 setUser(user);
                 history.push("/");
                 alert("Login successfull", user.displayName);
-
             })
     }
 
@@ -78,7 +76,6 @@ const useFirebaseHooks = () => {
             setUser(user);
         })
     }
-
         , [])
 
 
@@ -90,6 +87,7 @@ const useFirebaseHooks = () => {
             alert("Logged out Successfully");
         })
     }
+
     //forgotPassword
     const forgotPassword = () => {
         const auth = getAuth();
@@ -100,8 +98,8 @@ const useFirebaseHooks = () => {
             .catch((error) => {
                 const errorMessage = error.message;
                 setError(errorMessage);
-                
-              });
+
+            });
     }
 
     return {
@@ -120,4 +118,3 @@ const useFirebaseHooks = () => {
 
 }
 export default useFirebaseHooks;
-

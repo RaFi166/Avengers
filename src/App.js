@@ -31,7 +31,7 @@ function App() {
           <Route path="/create-avengers">
             <AddAvengers></AddAvengers>
           </Route>
-          <Route path="/login-signup">
+          <Route path="/login">
             <Login></Login>
           </Route>
           <Route path="/register">
