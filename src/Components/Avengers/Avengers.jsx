@@ -38,9 +38,11 @@ const Avengers = () => {
                             </div>
                             <div className="font-medium">
                                 <p>{allData.title}</p>
+                                
                                 <Link to={`/blog/${allData.id}`}>
                                     <button className="bg-green-500 font-medium p-1 mt-2 mb-2 rounded">Show details</button>
                                 </Link>
+                               
                             </div>
                         </div>
                     )
